@@ -262,15 +262,10 @@ try {
 
 Note: `INVALID_VALUE` messages intentionally do not include the secret value.
 
-## Building from source with Nix
-
-The repository ships a Nix flake so that Node.js and npm come from Nix and nothing is installed globally on the machine. npm dependencies and the npm cache stay inside the project.
+## Building from source
 
 ```bash
-# Enter the development shell (Node.js 24, npm from Nix)
-nix develop
-
-# Install dependencies into ./node_modules (project-local)
+# Install dependencies into ./node_modules
 npm install
 
 # Type-check, test, and build ESM + CJS + declarations
@@ -278,8 +273,6 @@ npm run typecheck
 npm test
 npm run build
 ```
-
-Without flakes, use `nix-shell` with the provided `shell.nix`.
 
 Build outputs:
 
@@ -293,11 +286,10 @@ Build outputs:
 The examples import the package by name, so build first:
 
 ```bash
-nix develop
 npm install
 npm run build
 
-YILY_TOKEN=yily_xxx node examples/typescript.ts   # Node.js 24 runs erasable TypeScript directly
+YILY_TOKEN=yily_xxx node examples/typescript.ts   # Node.js 24+ runs erasable TypeScript directly
 YILY_TOKEN=yily_xxx node examples/javascript.mjs
 YILY_TOKEN=yily_xxx node examples/javascript.cjs
 ```
